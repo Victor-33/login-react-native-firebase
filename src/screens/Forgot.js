@@ -7,7 +7,7 @@ import { firebase } from '../../config'
 
 // validate formik
 const validationFormik = yup.object().shape({
-    email: yup.string().email('Entre com um email válido').required('Insira seu email').label('Email'),
+    email: yup.string().email('Enter a valid e-mail').required('Enter your e-mail').label('E-mail'),
 
 })
 
@@ -20,9 +20,9 @@ class Forgot extends React.Component {
       handlePasswordRecovery = async () => {
         try {
           await firebase.auth().sendPasswordResetEmail(this.state.email);
-          Alert.alert('E-mail de recuperação de senha enviado', 'Por favor, verifique seu e-mail para obter instruções sobre como redefinir sua senha.');
+          Alert.alert('Password recovery email sent', 'Please check your e-mail for instructions on how to reset your password.');
         } catch (error) {
-          Alert.alert('E-mail não encontrado', 'Por favor, certifique-se de que o e-mail está escrito corretamente.'); // Alert.alert('Erro', error.message);
+          Alert.alert('E-mail not found', 'Please make sure the email is correct.');
         }
       };
 
@@ -63,7 +63,7 @@ class Forgot extends React.Component {
                             {/* <ActivityIndicator animating={formikProps.isSubmitting} size="large" color="#0ad6f2" /> */}
 
                             <View >
-                                <Text style={styles.txtLabel}>Insira seu endereço de email cadastrado</Text>
+                                <Text style={styles.txtLabel}>Enter your registered e-mail address</Text>
                                 <TextInput
                                     value={this.state.email}
                                     selectionColor={'#0ad6f2'}
@@ -98,7 +98,7 @@ class Forgot extends React.Component {
                             // onPress={formikProps.handleSubmit}
                             >
                                 <View style={styles.button}>
-                                    <Text style={styles.buttonText}>Enviar</Text>
+                                    <Text style={styles.buttonText}>Reset Passowrd</Text>
                             
                                 </View>
 
@@ -106,12 +106,12 @@ class Forgot extends React.Component {
 
                             <View>
                                 <Text 
-                                onPress={() => this.props.navigation.navigate('Login3')}
+                                onPress={() => this.props.navigation.navigate('Login2')}
                                 style={{
                                     marginTop: 20,
                                     alignSelf: 'center',
                                 }}>
-                                    Voltar para o Login
+                                    Back to Login
                                 </Text>
                             </View>
              

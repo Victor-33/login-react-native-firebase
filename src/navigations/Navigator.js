@@ -5,7 +5,6 @@ import Login from '../screens/Login';
 import Register from '../screens/Register';
 import Terms from '../screens/Terms';
 import Login2 from '../screens/Login2';
-import FlatButton from '../components/continuar';
 import Login3 from '../screens/Login3';
 import Forgot from '../screens/Forgot';
 import Home from '../screens/Home';
@@ -22,17 +21,16 @@ const stackNavigatorOptions = {
 }
 const AppNavigator = createStackNavigator({
   
-    // Register: {screen:Register},
-    Login3: {screen:Login3},
+    Login2: {screen:Login2},
+    Login3: {screen:Login3},   
     Forgot: {screen:Forgot},
-    // Home: {screen:Home},
-    // Workout: {screen:Workout},
-    // User: {screen:User},
     Register: {screen:RegistrationScreen},
     routes: {screen:Routes},
     routeslogin: {screen:routeslogin},
     logout: {screen:Logout},
     Login: {screen:Login},
+    Terms: {screen:Terms},
+
     
 },
 {

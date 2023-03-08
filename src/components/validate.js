@@ -1,6 +1,5 @@
 import 'react-native-gesture-handler';
 import { TouchableOpacity } from "react-native";
-import Checkbox from "./checkbox";
 import FlatButton from "./continuar";
 import React, { useState } from "react";
 import { View } from "react-native";

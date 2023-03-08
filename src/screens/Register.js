@@ -14,20 +14,18 @@ import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from '@react-navigation/native';
 import AppNavigator from '../navigations/Navigator';
 import { Alert } from 'react-native';
-
+import { withNavigation } from 'react-navigation';
 
 const validationFormik = yup.object().shape({
-    name: yup.string().required('Insira seu nome').label('Nome'),
-    email: yup.string().email('Entre com um email válido').required('Insira seu email').label('Email'),
-    password: yup.string().required('Insira uma senha').min(6, 'Senha deve conter pelo menos 6 caracteres').max(15, 'Senha muito longa').label("Senha"),
-    passwordConfirm: yup.string().oneOf([yup.ref('password'), null], 'Senhas não conferem').label('Confirmar Senha'), // do not use at the moment
-
+    name: yup.string().required('Enter your name').label('Name'),
+    email: yup.string().email('Enter a valid email').required('Enter your e-mail').label('E-mail'),
+    password: yup.string().required('Enter your password').min(6, 'Password must contain at least 6 characters').max(15, 'Password too long').label("Password"),
 })
 
 
 
 
-export default function RegistrationScreen(props) {
+function RegistrationScreen(props) {
 
     const showImage = (
         <Image
@@ -76,7 +74,7 @@ export default function RegistrationScreen(props) {
                 const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
 
                 if (status !== "granted") {
-                    alert("Nós precisamos dessa permissão.");
+                    alert("We need this permission.");
                     return;
                 }
             }
@@ -134,10 +132,11 @@ export default function RegistrationScreen(props) {
             })
             .catch((error) => {
                 // alert('Esse email já está em uso. Tente outro email.');
-                Alert.alert("Erro ao cadastrar", "Esse email já está em uso. Tente outro email.");
+                Alert.alert("Error", "This e-mail is already in use. Try another e-mail.");
                 setLoading(false);
             });
     };
+
 
     return (
         <SafeAreaView >
@@ -156,7 +155,7 @@ export default function RegistrationScreen(props) {
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
-                        <Text style={styles.buttonTextselect}>Selecionar imagem</Text>
+                        <Text style={styles.buttonTextselect}>Select an image</Text>
                     </TouchableOpacity>
 
                 </View>
@@ -181,7 +180,7 @@ export default function RegistrationScreen(props) {
                                     style={styles.txtInput}
                                     onChangeText={formikProps.handleChange("name")}
                                     oneBlur={formikProps.handleBlur('name')}
-                                    placeholder="Nome"
+                                    placeholder="Name"
                                     selectionColor={'#0ad6f2'}
                                 />
 
@@ -200,7 +199,7 @@ export default function RegistrationScreen(props) {
                                     style={styles.txtInput}
                                     onChangeText={formikProps.handleChange('email')}
                                     oneBlur={formikProps.handleBlur('email')}
-                                    placeholder="Email"
+                                    placeholder="E-mail"
                                     selectionColor={'#0ad6f2'}
                                 />
 
@@ -220,7 +219,7 @@ export default function RegistrationScreen(props) {
                                     onChangeText={formikProps.handleChange('password')}
                                     oneBlur={formikProps.handleBlur('password')}
                                     secureTextEntry={!secureTextEntry}
-                                    placeholder="Senha"
+                                    placeholder="Password"
                                     selectionColor={'#0ad6f2'}
 
                                 />
@@ -247,18 +246,17 @@ export default function RegistrationScreen(props) {
                                         textAlign: 'center',
                                         marginTop: 7,
                                     }
-                                }>Ao acessar os serviços do app:</Text>
+                                }>When accessing the app's services:</Text>
                                 <Text style={
                                     {
                                         fontSize: 11,
                                         textAlign: 'center',
                                         marginTop: 1,
-                                    }
-                                }>Declaro estar ciente e de acordo com os<Text onPress={() => this.props.navigation.navigate('Terms')}
-                                    style={{ fontSize: 11, marginTop: 0, color: '#1976D2', flexDirection: 'column' }}> Termos de uso</Text> e</Text>
+                                    }}> 
+                                    I declare to be aware of and agree with the<Text onPress={() => this.props.navigation.navigate('Terms')}
+                                    style={{ fontSize: 11, marginTop: 0, color: '#1976D2', flexDirection: 'column' }}> Terms of use</Text> and</Text>
                                 <Text onPress={() => this.props.navigation.navigate('Terms')}
-                                    style={{ fontSize: 11, marginTop: 0, textAlign: 'center', color: '#1976D2', marginTop: 1 }}>Política de Privacidade</Text>
-
+                                    style={{ fontSize: 11, marginTop: 0, textAlign: 'center', color: '#1976D2', marginTop: 1 }}>Privacy </Text>
                             </View>
 
 
@@ -287,9 +285,12 @@ export default function RegistrationScreen(props) {
                                     </View>
                                 ) : null}
 
+                                
+
 
 
                         </>
+                        
 
                     )}
 
@@ -300,7 +301,7 @@ export default function RegistrationScreen(props) {
     )
 }
 
-
+export default withNavigation(RegistrationScreen);
 
 const styles = StyleSheet.create({
     txtLabel: {

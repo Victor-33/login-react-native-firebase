@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { StyleSheet, Button, Text, View, Image, SafeAreaView, Alert } from "react-native";
 import FlatButton from "../components/continuar";
 import FlatButtonGoogle from "../components/continuargoogle";
-import Checkbox from "../components/checkbox";
 import Validate from "../components/validate";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -11,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { BackHandler } from "react-native";
 import { withNavigation } from 'react-navigation';
 
-Text.defaultProps = Text.defaultProps || {}; // block that font size get bigger
+Text.defaultProps = Text.defaultProps || {}; // Lock font size
 Text.defaultProps.allowFontScaling = false;
 
 
@@ -66,6 +65,8 @@ class Login extends React.Component {
                     }}>
                     HERO FIT
                 </Text>
+
+                
                 
 
                 <Text style={{ fontSize: 20, marginTop: -4, alignSelf: 'center', flexDirection: 'column' }}>
@@ -75,22 +76,22 @@ class Login extends React.Component {
                 <Text style={{ fontSize: 13, marginTop: 275, alignSelf: 'center', flexDirection: 'column' }}>
                     <Text onPress={() => this.props.navigation.navigate('Register')}
                     style={{ fontSize: 13, marginTop: 0, marginLeft: 77, textShadowColor: 'blue', flexDirection: 'column' }}>
-                        Não tem uma conta? Cadastre-se :{')'}</Text></Text>
+                        Do not have an account? Register :{')'}</Text></Text>
                 <Text style={{ fontSize: 17, marginTop: 10, alignSelf: 'center', flexDirection: 'column' }}>ou</Text>
 
-                <Text style={{ fontSize: 13, marginTop: 90, marginLeft: 77, flexDirection: 'column' }}>
-                    Declaro estar de acordo com os<Text onPress={() => this.props.navigation.navigate('routeslogin')}
+                <Text style={{ fontSize: 13, marginTop: 80, marginLeft: 97, flexDirection: 'column' }}>
+                    I agree to <Text onPress={() => this.props.navigation.navigate('Terms')}
                     style={{ fontSize: 13, marginTop: 0, marginLeft: 77, color: '#1976D2', flexDirection: 'column' }}> 
-                    Termos e Condições de Uso</Text></Text>
+                    Terms and Conditions</Text></Text>
 
                 {/* <FlatButton onPress={() => this.props.navigation.navigate('Login3')} /> */}
 
                 <FlatButton onPress={() => {
                     if (this.state.checkbox) {
-                        this.props.navigation.push('Login3') // push or replace
+                        this.props.navigation.push('Login2') // push or replace
                     } else {
                         // alert('Você precisa aceitar os termos e condições de uso para continuar')
-                        Alert.alert('Aviso', 'Você precisa aceitar os termos e condições de uso para continuar');
+                        Alert.alert('Alert', 'You need to accept the terms and conditions of use to continue');
                         
                     }
                 }} />
@@ -101,13 +102,14 @@ class Login extends React.Component {
                         height: 22,
                         alignSelf: 'center',
                         marginLeft: -200,
-                        marginTop: -94, // manipular altura da posição da imagem
+                        marginTop: -74, // manipular altura da posição da imagem
                         flexDirection: 'column',
                         justifyContent: 'center',
                     }} />
                 </View>
 
-                <FlatButtonGoogle text='Continuar com Google' onPress={() => this.props.navigation.navigate('Test')} />
+                <FlatButtonGoogle text='Continue with Google' onPress={() => this.props.navigation.navigate('Test')} />
+
 
                 {/* Checkbox */}
                 <View style={styles.container}>
@@ -115,7 +117,6 @@ class Login extends React.Component {
                         {this.state.checkbox ? (<View style={styles.checkedCheckbox} />) : null}
                     </TouchableOpacity>
                 </View>
-
 
 
 
@@ -141,7 +142,8 @@ const styles = StyleSheet.create({
         borderColor: 'grey',
         alignItems: 'center',
         justifyContent: 'center',
-        marginRight: 8,
+        marginLeft: 15,
+        marginTop: 15,
     },
     checkedCheckbox: {
         height: 11,

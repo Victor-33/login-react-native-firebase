@@ -9,25 +9,21 @@ import { firebase } from '../../config';
 import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 
-// validate formik
 const validationFormik = yup.object().shape({
-    email: yup.string().email('Entre com um email válido').required('Insira seu email').label('Email'),
-    password: yup.string().required('Insira sua senha').max(15, 'Senha muito longa').label("Senha"),
+    email: yup.string().email('Enter a valid e-mail').required('Enter your e-mail').label('E-mail'),
+    password: yup.string().required('Enter your password').max(15, 'Password too long').label("Password"),
     Checkbox: yup.boolean().oneOf([true], 'Please check the agreement').label("Checkbox")
 
 })
 
+// const getcolor = () => {
 
-const getcolor = () => {
-
-    if (formikProps.touched.password && formikProps.errors.password || formikProps.touched.email && formikProps.errors.email == true) {
-        return 'red'
-    } else {
-        return '#BCBCBC'
-    }
-}
-
-
+//     if (formikProps.touched.password && formikProps.errors.password || formikProps.touched.email && formikProps.errors.email == true) {
+//         return 'red'
+//     } else {
+//         return '#BCBCBC'
+//     }
+// }
 
 class Login3 extends React.Component {
 
@@ -35,23 +31,6 @@ class Login3 extends React.Component {
         secureTextEntry: true,
         loading: false,
     };
-
-    // onLoginPress = ({ email, password }) => {
-    //     try {
-    //         firebase.auth().signInWithEmailAndPassword(email, password)
-    //             .then(() => {
-    //                 console.log("Login successfully");
-    //                 this.props.navigation.replace('routes');
-    //             })
-    //             .catch(error => {
-    //                 Alert.alert(
-    //                     'Erro ao tentar entrar', 'E-mail ou senha incorretos');
-    //             });
-    //     }
-    //     catch (error) {
-    //         console.error(error);
-    //     }
-    // }
 
     onLoginPress = ({ email, password }) => {
         this.setState({ loading: true });
@@ -64,7 +43,7 @@ class Login3 extends React.Component {
                     this.props.navigation.replace("routes");
                 })
                 .catch(error => {
-                    Alert.alert("Erro ao tentar entrar", "E-mail ou senha incorretos");
+                    Alert.alert("Error when trying to login", "Incorrect email or password");
                     this.setState({ loading: false });
                 });
         } catch (error) {
@@ -73,52 +52,9 @@ class Login3 extends React.Component {
         }
     };
 
-    // state = {
-    //     secureTextEntry: true,
-    // };
-
     toggleSecureTextEntry = () => {
         this.setState({ secureTextEntry: !this.state.secureTextEntry });
     };
-
-    // onLoginPress = ({ email, password }) => {
-    //     this.setState({ loading: true });
-    //     try {
-    //       firebase
-    //         .auth()
-    //         .signInWithEmailAndPassword(email, password)
-    //         .then(() => {
-    //           console.log("Login successfully");
-    //           this.props.navigation.replace("routes");
-    //         })
-    //         .catch(error => {
-    //           Alert.alert("Erro ao tentar entrar", "E-mail ou senha incorretos");
-    //           this.setState({ loading: false });
-    //         });
-    //     } catch (error) {
-    //       console.error(error);
-    //       this.setState({ loading: false });
-    //     }
-    //   };
-
-
-    // -------------------------------------------- back button --------------------------------------------
-
-    // componentDidMount() {
-    //     BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-    //   }
-
-    //   componentWillUnmount() {
-    //     BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-    //   }
-
-    //   handleBackPress = () => {
-    //     if (this.props.navigation.routeName === 'Login3') {
-    //         this.props.navigation.navigate('Login');
-    //       return true;
-    //     }
-    //     return false;
-    //   }
 
     render() {
 
