@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, Alert  } from "react-native";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -15,36 +15,50 @@ class Forgot extends React.Component {
 
     state = {
         email: '',
-      };
+    };
 
-      handlePasswordRecovery = async () => {
+    handlePasswordRecovery = async () => {
         try {
-          await firebase.auth().sendPasswordResetEmail(this.state.email);
-          Alert.alert('Password recovery email sent', 'Please check your e-mail for instructions on how to reset your password.');
+            await firebase.auth().sendPasswordResetEmail(this.state.email);
+            Alert.alert('Password recovery email sent', 'Please check your e-mail for instructions on how to reset your password.');
         } catch (error) {
-          Alert.alert('E-mail not found', 'Please make sure the email is correct.');
+            Alert.alert('E-mail not found', 'Please make sure the email is correct.');
         }
-      };
+    };
 
 
     render() {
         return (
-            <SafeAreaView>
+            <SafeAreaView style={{marginTop: 40}}>
 
                 <View>
-                    <Text
+                    <Image source={require('../images/firebase.png')}
                         style={{
-                            fontSize: 60,
-                            fontWeight: 'bold',
+                            width: 90,
+                            height: 125,
                             alignSelf: 'center',
-                            marginTop: 140,
-                            marginBottom: 20,
-                        }}
-                    >HEROFIT</Text>
+                            marginTop: 130, // manipular altura da posição da imagem
+                            marginLeft: 150,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                        }} />
+
+
+                    <Image source={require('../images/React-icon.png')}
+                        style={{
+                            width: 130,
+                            height: 115,
+                            alignSelf: 'center',
+                            marginTop: -122, // manipular altura da posição da imagem
+                            marginLeft: -120,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                        }} />
+
                 </View>
 
                 <Formik
-                    initialValues={{ email: ""}}
+                    initialValues={{ email: "" }}
                     onSubmit={(values, actions) => {
                         // mudar lógica
                         this.doLogin({ email: values.email, password: values.password })
@@ -62,12 +76,14 @@ class Forgot extends React.Component {
                         <>
                             {/* <ActivityIndicator animating={formikProps.isSubmitting} size="large" color="#0ad6f2" /> */}
 
-                            <View >
+                            <View style={{marginTop: 40}}>
+
                                 <Text style={styles.txtLabel}>Enter your registered e-mail address</Text>
                                 <TextInput
                                     value={this.state.email}
                                     selectionColor={'#0ad6f2'}
                                     style={styles.txtInput}
+                                    placeholder="E-mail"
                                     // onChangeText={formikProps.handleChange('email')}
                                     onChangeText={email => this.setState({ email })}
                                     oneBlur={formikProps.handleBlur('email')}
@@ -81,7 +97,7 @@ class Forgot extends React.Component {
                                     marginLeft: 35,
                                     color: 'red'
                                 }}>
-                                    {formikProps.touched.email && formikProps.errors.email} 
+                                    {formikProps.touched.email && formikProps.errors.email}
                                 </Text>
 
                             </View>
@@ -93,33 +109,33 @@ class Forgot extends React.Component {
                             <TouchableOpacity style={{
                                 alignItems: 'center',
                             }}
-                            
-                            onPress={this.handlePasswordRecovery}
+
+                                onPress={this.handlePasswordRecovery}
                             // onPress={formikProps.handleSubmit}
                             >
                                 <View style={styles.button}>
                                     <Text style={styles.buttonText}>Reset Passowrd</Text>
-                            
+
                                 </View>
 
                             </TouchableOpacity>
 
                             <View>
-                                <Text 
-                                onPress={() => this.props.navigation.navigate('Login2')}
-                                style={{
-                                    marginTop: 20,
-                                    alignSelf: 'center',
-                                }}>
+                                <Text
+                                    onPress={() => this.props.navigation.navigate('Login2')}
+                                    style={{
+                                        marginTop: 20,
+                                        alignSelf: 'center',
+                                    }}>
                                     Back to Login
                                 </Text>
                             </View>
-             
+
 
                             <View style={styles.logincheckbox}>
 
                             </View>
-                        
+
                         </>
 
 

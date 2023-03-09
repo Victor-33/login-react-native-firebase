@@ -25,7 +25,7 @@ const validationFormik = yup.object().shape({
 //     }
 // }
 
-class Login3 extends React.Component {
+class Login2 extends React.Component {
 
     state = {
         secureTextEntry: true,
@@ -97,7 +97,7 @@ class Login3 extends React.Component {
         //   }
 
         return (
-            <SafeAreaView>
+            <SafeAreaView style={{marginTop: -20}}>
                 <KeyboardAwareScrollView>
 
                     <View>
@@ -109,15 +109,29 @@ class Login3 extends React.Component {
 
                         </TouchableOpacity> */}
 
-                        <Text
-                            style={{
-                                fontSize: 60,
-                                fontWeight: 'bold',
-                                alignSelf: 'center',
-                                marginTop: 140,
-                                marginBottom: 20,
-                            }}
-                        >HERO FIT</Text>
+                    <Image source={require('../images/firebase.png')}
+                        style={{
+                            width: 90,
+                            height: 125,
+                            alignSelf: 'center',
+                            marginTop: 130, // manipular altura da posição da imagem
+                            marginLeft: 150,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                        }} />
+
+
+                    <Image source={require('../images/React-icon.png')}
+                        style={{
+                            width: 130,
+                            height: 115,
+                            alignSelf: 'center',
+                            marginTop: -122, // manipular altura da posição da imagem
+                            marginLeft: -120,
+                            flexDirection: 'column',
+                            justifyContent: 'center',
+                        }} />
+                       
                     </View>
 
                     <Formik
@@ -145,7 +159,7 @@ class Login3 extends React.Component {
                                 {/* <ActivityIndicator animating={formikProps.isSubmitting} size="large" color="#0ad6f2" /> */}
 
 
-                                <View >
+                                <View style={{marginTop: 40}}>
                                     <Text style={styles.txtLabel}>E-mail</Text>
                                     <TextInput
                                         selectionColor={'#0ad6f2'}
@@ -201,32 +215,6 @@ class Login3 extends React.Component {
                                     onPress={formikProps.handleSubmit}>
                                     <View style={styles.button}>
                                         <Text style={styles.buttonText}>Login</Text>
-                                        <Image source={require('../images/barbell.png')} style={{
-                                            width: 40,
-                                            height: 40,
-                                            marginLeft: -90,
-                                            marginTop: -39, // manipular altura da posição da imagem
-                                            flexDirection: 'column',
-                                            transform: [{ rotate: '160deg' }],
-                                            tintColor: '#fcfcfc'
-                                        }} />
-                                        {/* 
-                                        <TouchableOpacity onPress={this.toggleSecureTextEntry}>
-
-                                            <Image
-                                                source={imageSource}
-                                                style={{ width: 30,
-                                                    height: 30,
-                                                    marginLeft: 240,
-                                                    marginTop: -148, // manipular altura da posição da imagem
-                                                    flexDirection: 'column', }}
-                                            />
-
-                                        </TouchableOpacity> */}
-
-
-
-
                                     </View>
 
                                 </TouchableOpacity>
@@ -310,7 +298,7 @@ class Login3 extends React.Component {
 }
 
 
-export default Login3;
+export default Login2;
 
 
 
@@ -430,7 +418,6 @@ const styles = StyleSheet.create({
         color: '#FCFCFC',
         fontWeight: 'semibold',
         fontSize: 30,
-        marginLeft: 50,
     },
     loadingContainer: {
         position: 'absolute',

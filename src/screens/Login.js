@@ -18,19 +18,19 @@ class Login extends React.Component {
 
     componentDidMount() {
         BackHandler.addEventListener('hardwareBackPress', this.handleBackPress);
-      }
-    
-      componentWillUnmount() {
+    }
+
+    componentWillUnmount() {
         BackHandler.removeEventListener('hardwareBackPress', this.handleBackPress);
-      }
-    
-      handleBackPress = () => {
-        if (this.props.navigation.routeName=== 'Login') {
-          BackHandler.exitApp();
-          return true;
+    }
+
+    handleBackPress = () => {
+        if (this.props.navigation.routeName === 'Login') {
+            BackHandler.exitApp();
+            return true;
         }
         return false;
-      }
+    }
 
     constructor(props) {
         super(props);
@@ -42,47 +42,67 @@ class Login extends React.Component {
 
     render() {
 
-        console.log(this.props.navigation.state.routeName)
+        // console.log(this.props.navigation.state.routeName)
 
         return (
             <SafeAreaView>
-                <Image source={require('../images/logo.png')}
+
+                <Image source={require('../images/firebase.png')}
                     style={{
-                        width: 200,
-                        height: 230,
+                        width: 90,
+                        height: 125,
                         alignSelf: 'center',
-                        marginTop: 225, // manipular altura da posição da imagem
+                        marginTop: 130, // manipular altura da posição da imagem
+                        marginLeft: -200,
                         flexDirection: 'column',
                         justifyContent: 'center',
                     }} />
 
-                <Text
+                    <Text
+                        style={{
+                            fontSize: 50,
+                            marginTop: -90,
+                            marginLeft: 120,
+                            alignSelf: 'center',
+                            flexDirection: 'column',
+                        }}>
+
+                    Firebase</Text>
+
+                <Image source={require('../images/React-icon.png')}
                     style={{
-                        fontSize: 53,
-                        textAlign: 'center',
-                        marginTop: -300,
-                        fontWeight: 'bold',
-                    }}>
-                    HERO FIT
+                        width: 205,
+                        height: 180,
+                        alignSelf: 'center',
+                        marginTop: 50, // manipular altura da posição da imagem
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                    }} />
+
+
+
+
+
+
+
+                <Text style={{ fontSize: 13, marginTop: 80, alignSelf: 'center', flexDirection: 'column' }}>
+                    <Text onPress={() => this.props.navigation.navigate('Register')}
+                        style={{ fontSize: 13, marginTop: 10, marginLeft: 77, textShadowColor: 'blue', flexDirection: 'column' }}>
+                        Do not have an account? Register :{')'}
+                    </Text>
                 </Text>
 
-                
-                
+                {/* <Text style={{marginLeft: 20, marginTop: 10}}>___________________</Text>
+                <Text style={{marginLeft: 220, marginTop: -20}}>___________________</Text> */}
 
-                <Text style={{ fontSize: 20, marginTop: -4, alignSelf: 'center', flexDirection: 'column' }}>
-                    Tenha constância. Construa</Text>
-                <Text style={{ fontSize: 20, marginTop: -1, alignSelf: 'center', flexDirection: 'column' }}>
-                    resultados</Text>
-                <Text style={{ fontSize: 13, marginTop: 275, alignSelf: 'center', flexDirection: 'column' }}>
-                    <Text onPress={() => this.props.navigation.navigate('Register')}
-                    style={{ fontSize: 13, marginTop: 0, marginLeft: 77, textShadowColor: 'blue', flexDirection: 'column' }}>
-                        Do not have an account? Register :{')'}</Text></Text>
-                <Text style={{ fontSize: 17, marginTop: 10, alignSelf: 'center', flexDirection: 'column' }}>ou</Text>
+                <Text style={{ fontSize: 17, marginTop: 20, alignSelf: 'center', flexDirection: 'column' }}>or</Text>
 
-                <Text style={{ fontSize: 13, marginTop: 80, marginLeft: 97, flexDirection: 'column' }}>
+                <Text style={{ fontSize: 13, marginTop: 90, marginLeft: 97, flexDirection: 'column' }}>
                     I agree to <Text onPress={() => this.props.navigation.navigate('Terms')}
-                    style={{ fontSize: 13, marginTop: 0, marginLeft: 77, color: '#1976D2', flexDirection: 'column' }}> 
-                    Terms and Conditions</Text></Text>
+                        style={{ fontSize: 13, marginTop: 10, marginLeft: 77, color: '#1976D2', flexDirection: 'column' }}>
+                        Terms and Conditions
+                    </Text>
+                </Text>
 
                 {/* <FlatButton onPress={() => this.props.navigation.navigate('Login3')} /> */}
 
@@ -92,9 +112,12 @@ class Login extends React.Component {
                     } else {
                         // alert('Você precisa aceitar os termos e condições de uso para continuar')
                         Alert.alert('Alert', 'You need to accept the terms and conditions of use to continue');
-                        
+
                     }
                 }} />
+
+                {/* hereeeee */}
+
 
                 <View>
                     <Image source={require('../images/google.png')} style={{
@@ -113,7 +136,7 @@ class Login extends React.Component {
 
                 {/* Checkbox */}
                 <View style={styles.container}>
-                <TouchableOpacity style={styles.checkbox} onPress={() => this.setState({ checkbox: !this.state.checkbox })}>
+                    <TouchableOpacity style={styles.checkbox} onPress={() => this.setState({ checkbox: !this.state.checkbox })}>
                         {this.state.checkbox ? (<View style={styles.checkedCheckbox} />) : null}
                     </TouchableOpacity>
                 </View>
@@ -149,7 +172,7 @@ const styles = StyleSheet.create({
         height: 11,
         width: 11,
         borderRadius: 2,
-        backgroundColor: '#31aa52',
+        backgroundColor: '#319eaa',
     },
     uncheckedCheckbox: {
         height: 16,

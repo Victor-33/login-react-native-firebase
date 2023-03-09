@@ -267,13 +267,12 @@ function RegistrationScreen(props) {
                                 {/* formikProps.handleSubmit */}
                                 <View style={styles.buttonsign}>
                                     <Text style={styles.buttonText}>Sign-up</Text>
-                                    <Image source={require('../images/logo.png')} style={{
-                                        width: 110,
-                                        height: 110,
-                                        marginLeft: -100,
-                                        marginTop: -72, // manipular altura (antes tava -74, no iphone -70)
+                                    <Image source={require('../images/firebase.png')} style={{
+                                        width: 35,
+                                        height: 48,
+                                        marginLeft: -110,
+                                        marginTop: -45, // manipular altura (antes tava -74, no iphone -70)
                                         flexDirection: 'column',
-                                        tintColor: '#fcfcfc'
                                     }} />
                                 </View>
 
@@ -283,21 +282,12 @@ function RegistrationScreen(props) {
                                     <View style={styles.loadingContainer}>
                                         <ActivityIndicator size="large" color="#0ad6f2" />
                                     </View>
-                                ) : null}
-
-                                
-
-
-
-                        </>
-                        
-
+                            ) : null}
+                        </>                   
                     )}
-
                 </Formik>
             </KeyboardAwareScrollView>
         </SafeAreaView>
-
     )
 }
 

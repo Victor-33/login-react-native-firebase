@@ -18,7 +18,6 @@ function Home(props)  {
 
   const [user, setUser] = useState({});
 
-// block return screen after logout
 useEffect(() => {
   const backHandler = BackHandler.addEventListener(
     'hardwareBackPress',
@@ -34,7 +33,6 @@ const handleBackButton = () => {
   }
   return false;
 };
-
 
   console.log(props.route.name);
 

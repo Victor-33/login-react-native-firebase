@@ -1,7 +1,5 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../screens/Home';
-import Workout from '../screens/Workout';
-import User from '../screens/User';
 import { Image } from 'react-native';
 
 const Tab = createBottomTabNavigator(); // Create a tab navigator
