@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, Alert, Image } from "react-native";
+import React from "react";
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as yup from "yup";
@@ -37,7 +37,7 @@ class Forgot extends React.Component {
                             width: 90,
                             height: 125,
                             alignSelf: 'center',
-                            marginTop: 130, // manipular altura da posição da imagem
+                            marginTop: 130,
                             marginLeft: 150,
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -49,7 +49,7 @@ class Forgot extends React.Component {
                             width: 130,
                             height: 115,
                             alignSelf: 'center',
-                            marginTop: -122, // manipular altura da posição da imagem
+                            marginTop: -122,
                             marginLeft: -120,
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -60,7 +60,6 @@ class Forgot extends React.Component {
                 <Formik
                     initialValues={{ email: "" }}
                     onSubmit={(values, actions) => {
-                        // mudar lógica
                         this.doLogin({ email: values.email, password: values.password })
                             .then(() => alert('Login success'))
                             .catch(e => actions.setFieldError('MyErrorLogin', e.message))
@@ -74,8 +73,6 @@ class Forgot extends React.Component {
                     {formikProps => (
 
                         <>
-                            {/* <ActivityIndicator animating={formikProps.isSubmitting} size="large" color="#0ad6f2" /> */}
-
                             <View style={{marginTop: 40}}>
 
                                 <Text style={styles.txtLabel}>Enter your registered e-mail address</Text>
@@ -84,13 +81,12 @@ class Forgot extends React.Component {
                                     selectionColor={'#0ad6f2'}
                                     style={styles.txtInput}
                                     placeholder="E-mail"
-                                    // onChangeText={formikProps.handleChange('email')}
                                     onChangeText={email => this.setState({ email })}
                                     oneBlur={formikProps.handleBlur('email')}
 
                                 />
 
-                                {/* show error email  */}
+                                {/* show email error  */}
 
                                 <Text style={{
                                     marginTop: -10,
@@ -102,20 +98,13 @@ class Forgot extends React.Component {
 
                             </View>
 
-                            {/* tenho que enviar código para o emal ao click do botão
-                            ao clicar e email bater com o cadastrado, exibir uma simples notificação
-                            dizendo que o email de recuperação de senha foi enviado com sucesso.
-                            o email deve conter um link para o cadastro de uma nova senha */}
                             <TouchableOpacity style={{
                                 alignItems: 'center',
                             }}
-
                                 onPress={this.handlePasswordRecovery}
-                            // onPress={formikProps.handleSubmit}
                             >
                                 <View style={styles.button}>
                                     <Text style={styles.buttonText}>Reset Passowrd</Text>
-
                                 </View>
 
                             </TouchableOpacity>
@@ -131,18 +120,13 @@ class Forgot extends React.Component {
                                 </Text>
                             </View>
 
-
                             <View style={styles.logincheckbox}>
 
                             </View>
 
                         </>
-
-
                     )}
-
                 </Formik>
-
             </SafeAreaView>
         )
     }
@@ -159,7 +143,7 @@ const styles = StyleSheet.create({
         marginLeft: 35,
         opacity: 0.3,
         height: 27,
-        marginTop: -10, // manipular altura de tudo
+        marginTop: -10,
     },
     txtInput: {
         fontSize: 18,

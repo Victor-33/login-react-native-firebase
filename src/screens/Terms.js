@@ -1,17 +1,12 @@
 import React from "react";
-import {Text, View, SafeAreaView, StyleSheet} from "react-native";
+import {Text, SafeAreaView, StyleSheet} from "react-native";
 
 export default class Terms extends React.Component {
     render() {
         return (
-            
         <SafeAreaView>
-
             <Text style={styles.container}> Terms of Use and Privacy Policy </Text>
-
-
-        </SafeAreaView>
-                
+        </SafeAreaView>   
         )
     }
 }
@@ -23,6 +18,5 @@ const styles = StyleSheet.create({
         marginTop: 350,
         textAlign: 'center',
         fontSize: 15,
-
     },
 });

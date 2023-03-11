@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, Touchable } from 'react-native';
+import { Text, View, SafeAreaView, Touchable, StyleSheet } from 'react-native';
 import { firebase } from '../../config';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { withNavigation } from 'react-navigation';
@@ -20,24 +20,34 @@ class Logout extends React.Component {
             <View>
                 <TouchableOpacity 
                 onPress={this.Logout_function}
-                style={{
-                backgroundColor: 'red',
-                padding: 10,
-                borderRadius: 5,
-                marginTop: 500,
-                marginLeft: 135,
-                width: 100,
-                height: 50,
-                alignItems: 'center',
-                justifyContent: 'center',
-                }}
-                >
-                <Text>Logout</Text>
+                style={styles.button}>
+
+                <Text style={styles.buttonText}>Logout</Text>
+
                 </TouchableOpacity>
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    button: {
+        alignItems: "center",
+        backgroundColor: "#030303",
+        padding: 11,
+        marginTop: 35,
+        borderRadius: 10,
+        marginHorizontal: 29,
+        height: 55,
+        
+    },
+    buttonText: {
+        color: '#fcfcfc',
+        textAlign: 'center',
+        fontSize: 30,
+        marginTop: -5,
+    }
+});
 
 export default withNavigation(Logout);
 

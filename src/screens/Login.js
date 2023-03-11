@@ -1,18 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyleSheet, Button, Text, View, Image, SafeAreaView, Alert } from "react-native";
-import FlatButton from "../components/continuar";
-import FlatButtonGoogle from "../components/continuargoogle";
-import Validate from "../components/validate";
-import { useFormik } from "formik";
-import * as yup from "yup";
-import { TouchableOpacity, TouchableHighlight } from "react-native-gesture-handler";
-import { NavigationContainer } from '@react-navigation/native';
+import FlatButton from "../components/continue";
+import FlatButtonGoogle from "../components/continuegoogle";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import { BackHandler } from "react-native";
 import { withNavigation } from 'react-navigation';
 
 Text.defaultProps = Text.defaultProps || {}; // Lock font size
 Text.defaultProps.allowFontScaling = false;
-
 
 class Login extends React.Component {
 
@@ -41,9 +36,6 @@ class Login extends React.Component {
     }
 
     render() {
-
-        // console.log(this.props.navigation.state.routeName)
-
         return (
             <SafeAreaView>
 
@@ -52,7 +44,7 @@ class Login extends React.Component {
                         width: 90,
                         height: 125,
                         alignSelf: 'center',
-                        marginTop: 130, // manipular altura da posição da imagem
+                        marginTop: 130,
                         marginLeft: -200,
                         flexDirection: 'column',
                         justifyContent: 'center',
@@ -74,16 +66,10 @@ class Login extends React.Component {
                         width: 205,
                         height: 180,
                         alignSelf: 'center',
-                        marginTop: 50, // manipular altura da posição da imagem
+                        marginTop: 50,
                         flexDirection: 'column',
                         justifyContent: 'center',
                     }} />
-
-
-
-
-
-
 
                 <Text style={{ fontSize: 13, marginTop: 80, alignSelf: 'center', flexDirection: 'column' }}>
                     <Text onPress={() => this.props.navigation.navigate('Register')}
@@ -92,32 +78,23 @@ class Login extends React.Component {
                     </Text>
                 </Text>
 
-                {/* <Text style={{marginLeft: 20, marginTop: 10}}>___________________</Text>
-                <Text style={{marginLeft: 220, marginTop: -20}}>___________________</Text> */}
-
                 <Text style={{ fontSize: 17, marginTop: 20, alignSelf: 'center', flexDirection: 'column' }}>or</Text>
 
                 <Text style={{ fontSize: 13, marginTop: 90, marginLeft: 97, flexDirection: 'column' }}>
                     I agree to <Text onPress={() => this.props.navigation.navigate('Terms')}
-                        style={{ fontSize: 13, marginTop: 10, marginLeft: 77, color: '#1976D2', flexDirection: 'column' }}>
+                        style={{ fontSize: 13,  marginTop: 0, textAlign: 'center', color: '#1976D2', marginTop: 1  }}>
                         Terms and Conditions
                     </Text>
                 </Text>
 
-                {/* <FlatButton onPress={() => this.props.navigation.navigate('Login3')} /> */}
-
                 <FlatButton onPress={() => {
                     if (this.state.checkbox) {
-                        this.props.navigation.push('Login2') // push or replace
+                        this.props.navigation.push('Login2')
                     } else {
-                        // alert('Você precisa aceitar os termos e condições de uso para continuar')
                         Alert.alert('Alert', 'You need to accept the terms and conditions of use to continue');
 
                     }
                 }} />
-
-                {/* hereeeee */}
-
 
                 <View>
                     <Image source={require('../images/google.png')} style={{
@@ -125,14 +102,14 @@ class Login extends React.Component {
                         height: 22,
                         alignSelf: 'center',
                         marginLeft: -200,
-                        marginTop: -74, // manipular altura da posição da imagem
+                        marginTop: -74,
                         flexDirection: 'column',
                         justifyContent: 'center',
                     }} />
                 </View>
 
-                <FlatButtonGoogle text='Continue with Google' onPress={() => this.props.navigation.navigate('Test')} />
-
+                {/* make Google API */}
+                <FlatButtonGoogle text='Continue with Google' /> 
 
                 {/* Checkbox */}
                 <View style={styles.container}>
@@ -140,8 +117,6 @@ class Login extends React.Component {
                         {this.state.checkbox ? (<View style={styles.checkedCheckbox} />) : null}
                     </TouchableOpacity>
                 </View>
-
-
 
             </SafeAreaView>
         )

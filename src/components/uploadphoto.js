@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet, Image, Button } from "react-native";
+import { View, TouchableOpacity, Text, StyleSheet, Image } from "react-native";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-import Axios from "axios";
-import { firebase } from '../../config'
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { storage } from "../../config";
-import { createContext, useContext } from 'react';
-
-
-// export const PhotoUri = createContext();
 
 
 export default function Upload() {
@@ -23,7 +15,7 @@ export default function Upload() {
       const { status } = await Permissions.askAsync(Permissions.MEDIA_LIBRARY);
 
       if (status !== "granted") {
-        alert("Nós precisamos dessa permissão.");
+        alert("We need this permission.");
         return;
       }
     }
@@ -45,22 +37,7 @@ export default function Upload() {
 
   }
 
-  async function UploadPhotoUri() {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    const docRef = firebase.firestore().collection('photos').doc();
-    docRef.set({
-        uri
-    }).then(() => {
-        console.log("Data saved successfully");
-    }).catch(error => {
-        console.log("Error saving data: ", error);
-    });
-  }
-
-
   return (
-    // <PhotoUri.Provider value={uri}>
     <View style={styles.container}>
       <TouchableOpacity style={styles.button} onPress={imagePickerCall}>
         <Image
@@ -78,18 +55,14 @@ export default function Upload() {
       </TouchableOpacity>
 
     </View>
-    // </PhotoUri.Provider> 
   );
 }
 
-
 const styles = StyleSheet.create({
   container: {
-
     justifyContent: "center",
     alignItems: "center",
     marginTop: 70,
-
   },
   button: {
     width: 120,
@@ -100,13 +73,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 40
   },
-  buttonText: {
-
-  },
   avatar: {
     width: 90,
     height: 90,
     borderRadius: 50
-
-  }
+  },
 });

@@ -3,26 +3,20 @@ import { Image, Text, TextInput, TouchableOpacity, View, StyleSheet, Button, Act
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { firebase } from '../../config'
-import Upload from "../components/uploadphoto";
 import { Formik } from "formik";
 import * as yup from "yup";
-import { useContext } from 'react';
-import { PhotoUri } from "../components/uploadphoto";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 import * as ImagePicker from "expo-image-picker";
-import { useNavigation } from '@react-navigation/native';
-import AppNavigator from '../navigations/Navigator';
 import { Alert } from 'react-native';
 import { withNavigation } from 'react-navigation';
+import { useNavigation } from '@react-navigation/native';
 
 const validationFormik = yup.object().shape({
     name: yup.string().required('Enter your name').label('Name'),
     email: yup.string().email('Enter a valid email').required('Enter your e-mail').label('E-mail'),
     password: yup.string().required('Enter your password').min(6, 'Password must contain at least 6 characters').max(15, 'Password too long').label("Password"),
 })
-
-
 
 
 function RegistrationScreen(props) {
@@ -33,7 +27,7 @@ function RegistrationScreen(props) {
                 width: 35,
                 height: 20,
                 marginLeft: 285,
-                marginTop: -55, // manipular altura da posição da imagem
+                marginTop: -55,
                 flexDirection: 'column',
                 tintColor: '#BCBCBC',
             }}
@@ -47,7 +41,7 @@ function RegistrationScreen(props) {
                 width: 30,
                 height: 30,
                 marginLeft: 288,
-                marginTop: -60, // manipular altura da posição da imagem
+                marginTop: -60,
                 flexDirection: 'column',
                 tintColor: '#BCBCBC',
             }}
@@ -61,9 +55,6 @@ function RegistrationScreen(props) {
     const toggleSecureTextEntry = () => {
         setSecureTextEntry(!secureTextEntry);
     };
-
-    const navigation = useNavigation();
-
 
     const [avatar, setAvatar] = useState();
     const [uri, setUri] = useState('');
@@ -124,19 +115,17 @@ function RegistrationScreen(props) {
                     .set(data)
                     .then(() => {
                         console.log("Data saved successfully");
-                        props.navigation.replace('routes', { user: data }); // navigate
+                        props.navigation.replace('Home', { user: data }); // navigate with data
                     })
                     .catch((error) => {
                         alert(error);
                     });
             })
             .catch((error) => {
-                // alert('Esse email já está em uso. Tente outro email.');
                 Alert.alert("Error", "This e-mail is already in use. Try another e-mail.");
                 setLoading(false);
             });
     };
-
 
     return (
         <SafeAreaView >
@@ -162,12 +151,9 @@ function RegistrationScreen(props) {
 
                 <Formik
                     initialValues={{ email: "", password: "", name: "" }}
-                    // change here to register in the database
-
                     onSubmit={values => onRegisterPress(values)}
                     validationSchema={validationFormik}
                 >
-
 
                     {formikProps => (
 
@@ -184,7 +170,7 @@ function RegistrationScreen(props) {
                                     selectionColor={'#0ad6f2'}
                                 />
 
-                                {/* show error name  */}
+                                {/* show name error  */}
                                 <Text style={{
                                     marginTop: -10,
                                     marginLeft: 35,
@@ -203,7 +189,7 @@ function RegistrationScreen(props) {
                                     selectionColor={'#0ad6f2'}
                                 />
 
-                                {/* show error email  */}
+                                {/* show email error  */}
                                 <Text style={{
                                     marginTop: -10,
                                     marginLeft: 35,
@@ -224,7 +210,7 @@ function RegistrationScreen(props) {
 
                                 />
 
-                                {/* show error password  */}
+                                {/* show password error  */}
                                 <Text style={{
                                     marginTop: -10,
                                     marginLeft: 35,
@@ -253,9 +239,9 @@ function RegistrationScreen(props) {
                                         textAlign: 'center',
                                         marginTop: 1,
                                     }}> 
-                                    I declare to be aware of and agree with the<Text onPress={() => this.props.navigation.navigate('Terms')}
+                                    I declare to be aware of and agree with the<Text onPress={() => props.navigation.navigate('Terms')}
                                     style={{ fontSize: 11, marginTop: 0, color: '#1976D2', flexDirection: 'column' }}> Terms of use</Text> and</Text>
-                                <Text onPress={() => this.props.navigation.navigate('Terms')}
+                                <Text onPress={() => props.navigation.navigate('Terms')}
                                     style={{ fontSize: 11, marginTop: 0, textAlign: 'center', color: '#1976D2', marginTop: 1 }}>Privacy </Text>
                             </View>
 
@@ -264,14 +250,13 @@ function RegistrationScreen(props) {
                                 alignItems: 'center',
                             }}
                                 onPress={formikProps.handleSubmit}>
-                                {/* formikProps.handleSubmit */}
                                 <View style={styles.buttonsign}>
                                     <Text style={styles.buttonText}>Sign-up</Text>
                                     <Image source={require('../images/firebase.png')} style={{
                                         width: 35,
                                         height: 48,
                                         marginLeft: -110,
-                                        marginTop: -45, // manipular altura (antes tava -74, no iphone -70)
+                                        marginTop: -45,
                                         flexDirection: 'column',
                                     }} />
                                 </View>
@@ -302,7 +287,7 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         opacity: 0.3,
         height: 27,
-        marginTop: 40, // manipular altura de tudo
+        marginTop: 40,
     },
     txtLabelpassword: {
         fontSize: 15,
@@ -312,7 +297,6 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         opacity: 0.3,
         height: 27,
-
     },
     txtInput: {
         fontSize: 18,
@@ -333,7 +317,6 @@ const styles = StyleSheet.create({
         marginTop: 6,
         marginBottom: 10,
         marginHorizontal: 30,
-
     },
     btnSubmit: {
         backgroundColor: '#030303',
@@ -342,7 +325,6 @@ const styles = StyleSheet.create({
         marginTop: 300,
         textAlign: 'center',
         color: '#fcfcfc',
-
         width: 300,
         marginHorizontal: 30,
     },
@@ -369,11 +351,9 @@ const styles = StyleSheet.create({
         marginLeft: 60,
     },
     content: {
-
         justifyContent: "center",
         alignItems: "center",
         marginTop: 70,
-
     },
     button: {
         width: 120,
@@ -384,14 +364,10 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginTop: 40
     },
-    buttonTextselect: {
-
-    },
     avatar: {
         width: 90,
         height: 90,
         borderRadius: 50
-
     },
     loadingContainer: {
         position: 'absolute',
@@ -401,7 +377,6 @@ const styles = StyleSheet.create({
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: 'rgba(0,0,0,0.2)',
     },
     hidespace : {
         height: 35,

@@ -1,29 +1,18 @@
-import React, { Component } from 'react';
-import { BackHandler } from 'react-native';
-import { Text, View, StyleSheet, TextInput, Button, TouchableOpacity, ActivityIndicator, Image } from "react-native";
+import React from 'react';
+import { Text, View, StyleSheet, TextInput, TouchableOpacity, ActivityIndicator, Image } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { firebase } from '../../config';
-import { useNavigation } from '@react-navigation/native';
 import { Alert } from 'react-native';
 
 const validationFormik = yup.object().shape({
     email: yup.string().email('Enter a valid e-mail').required('Enter your e-mail').label('E-mail'),
     password: yup.string().required('Enter your password').max(15, 'Password too long').label("Password"),
     Checkbox: yup.boolean().oneOf([true], 'Please check the agreement').label("Checkbox")
-
 })
 
-// const getcolor = () => {
-
-//     if (formikProps.touched.password && formikProps.errors.password || formikProps.touched.email && formikProps.errors.email == true) {
-//         return 'red'
-//     } else {
-//         return '#BCBCBC'
-//     }
-// }
 
 class Login2 extends React.Component {
 
@@ -40,7 +29,7 @@ class Login2 extends React.Component {
                 .signInWithEmailAndPassword(email, password)
                 .then(() => {
                     console.log("Login successfully");
-                    this.props.navigation.replace("routes");
+                    this.props.navigation.replace("Home");
                 })
                 .catch(error => {
                     Alert.alert("Error when trying to login", "Incorrect email or password");
@@ -66,7 +55,7 @@ class Login2 extends React.Component {
                     width: 35,
                     height: 20,
                     marginLeft: 283,
-                    marginTop: -155, // manipular altura da posição da imagem
+                    marginTop: -155,
                     flexDirection: 'column',
                 }}
                 tintColor='#BCBCBC'
@@ -80,7 +69,7 @@ class Login2 extends React.Component {
                     width: 30,
                     height: 30,
                     marginLeft: 285,
-                    marginTop: -160, // manipular altura da posição da imagem
+                    marginTop: -160,
                     flexDirection: 'column',
                 }}
                 tintColor='#BCBCBC'
@@ -88,45 +77,29 @@ class Login2 extends React.Component {
             />
         );
 
-        // if (loading) {
-        //     return (
-        //       <View style={styles.loadingContainer}>
-        //         <ActivityIndicator size="large" color="#0ad6f2" />
-        //       </View>
-        //     );
-        //   }
-
         return (
             <SafeAreaView style={{marginTop: -20}}>
                 <KeyboardAwareScrollView>
 
                     <View>
 
-                        {/* <TouchableOpacity>
-                            <Text style={{fontSize: 50,  color: '#0ad6f2' }}
-                                onPress={() => this.props.navigation.navigate('Login')}
-                                    >Voltar</Text>
-
-                        </TouchableOpacity> */}
-
                     <Image source={require('../images/firebase.png')}
                         style={{
                             width: 90,
                             height: 125,
                             alignSelf: 'center',
-                            marginTop: 130, // manipular altura da posição da imagem
+                            marginTop: 130,
                             marginLeft: 150,
                             flexDirection: 'column',
                             justifyContent: 'center',
                         }} />
-
 
                     <Image source={require('../images/React-icon.png')}
                         style={{
                             width: 130,
                             height: 115,
                             alignSelf: 'center',
-                            marginTop: -122, // manipular altura da posição da imagem
+                            marginTop: -122,
                             marginLeft: -120,
                             flexDirection: 'column',
                             justifyContent: 'center',
@@ -136,14 +109,6 @@ class Login2 extends React.Component {
 
                     <Formik
                         initialValues={{ email: "", password: "" }}
-
-                        // onSubmit={(values, actions) => {
-                        //     this.doLogin({ email: values.email, password: values.password })
-                        //         .then(() => alert('Login success'))
-                        //         .catch(e => actions.setFieldError('MyErrorLogin', e.message))
-                        //         .finally(() => actions.setSubmitting(false));
-                        //     alert(JSON.stringify(values));
-                        // }}
 
                         onSubmit={values => {
                             this.onLoginPress({ email: values.email, password: values.password })
@@ -156,9 +121,6 @@ class Login2 extends React.Component {
 
                             <>
 
-                                {/* <ActivityIndicator animating={formikProps.isSubmitting} size="large" color="#0ad6f2" /> */}
-
-
                                 <View style={{marginTop: 40}}>
                                     <Text style={styles.txtLabel}>E-mail</Text>
                                     <TextInput
@@ -169,7 +131,7 @@ class Login2 extends React.Component {
 
                                     />
 
-                                    {/* show error email  */}
+                                    {/* show email error  */}
 
                                     <Text style={{
                                         marginTop: -10,
@@ -194,7 +156,7 @@ class Login2 extends React.Component {
                                         secureTextEntry={this.state.secureTextEntry}
                                     />
 
-                                    {/* show error password  */}
+                                    {/* show password error  */}
 
                                     <Text
                                         style={{
@@ -225,7 +187,7 @@ class Login2 extends React.Component {
 
                                 <View>
                                     <Text
-                                        onPress={() => this.props.navigation.navigate('Forgot')} // fazer nova tela para recuperar senha
+                                        onPress={() => this.props.navigation.navigate('Forgot')}
                                         style={{
                                             marginTop: -110,
                                             marginLeft: 190,
@@ -239,7 +201,7 @@ class Login2 extends React.Component {
 
                                 <View>
                                     <Text
-                                        onPress={() => this.props.navigation.navigate('Register')} // fazer nova tela para recuperar senha
+                                        onPress={() => this.props.navigation.navigate('Register')}
                                         style={{
                                             marginTop: 40,
                                             alignSelf: 'center',
@@ -248,28 +210,6 @@ class Login2 extends React.Component {
                                     </Text>
 
                                 </View>
-
-                                {/* <View>
-                              
-                                    
-                               
-                                </View> */}
-
-
-
-                                {/* <View style={styles.button}> */}
-
-                                {/* <TouchableOpacity >
-                                    <Text style={styles.btnSubmit} onPress={formikProps.handleSubmit}>
-
-                                        Entrar
-                                    
-                                    </Text>
-                                </TouchableOpacity> */}
-
-                                {/* <Button style={styles.btnSubmit} title="Login" onPress={formikProps.handleSubmit} />
-                                    <Text style={{ color: 'red' }}> {formikProps.errors.MyErrorLogin} </Text> */}
-                                {/* </View> */}
 
                                 <View style={styles.logincheckbox}>
 
@@ -281,14 +221,9 @@ class Login2 extends React.Component {
                                     </View>
                                 ) : null}
 
-
                             </>
 
-
-
                         )}
-
-
 
                     </Formik>
                 </KeyboardAwareScrollView>
@@ -296,7 +231,6 @@ class Login2 extends React.Component {
         )
     }
 }
-
 
 export default Login2;
 
@@ -311,7 +245,7 @@ const styles = StyleSheet.create({
         marginLeft: 40,
         opacity: 0.3,
         height: 27,
-        marginTop: -10, // manipular altura de tudo
+        marginTop: -10,
     },
     txtLabelpassword: {
         fontSize: 15,
@@ -333,7 +267,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginHorizontal: 30,
     },
-
     txtInputwrong: {
         fontSize: 18,
         borderWidth: 1,
@@ -344,7 +277,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginHorizontal: 30,
     },
-
     txtInputpassword: {
         fontSize: 18,
         borderWidth: 1,
@@ -355,7 +287,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginHorizontal: 30,
     },
-
     txtInputpasswordwrong: {
         fontSize: 18,
         borderWidth: 1,
@@ -367,7 +298,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 30,
 
     },
-
     btnSubmit: {
         backgroundColor: '#030303',
         padding: 20,
