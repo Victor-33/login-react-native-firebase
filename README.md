@@ -3,6 +3,7 @@
 In this repository there are some features in React Native integrated with Firebase in the backend. The application is supported by the React Expo CLI.
 
 (photo with login and registration)
+![Login](src/images/login.png)
 
 Here are the features covered in the repository:
 
