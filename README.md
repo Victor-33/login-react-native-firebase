@@ -7,11 +7,11 @@ In this repository there are some features in React Native integrated with Fireb
 
 Here are the features covered in the repository:
 
-Registration with E-mail & Password
-Login with E-mail and Password
-Handling persisted login credentials
-Navigation (react-native-navigation)
-Authentication with Data Persistence in Firebase
+- Registration with E-mail & Password
+- Login with E-mail and Password
+- Handling persisted login credentials
+- Navigation (react-native-navigation)
+- Authentication with Data Persistence in Firebase
 
 
 ![Login](src/images/2.png)
