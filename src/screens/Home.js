@@ -1,11 +1,12 @@
 import React from "react";
-import { Text, View, Image, StyleSheet } from "react-native";
+import { Text, SafeAreaView, Image, StyleSheet, View } from "react-native";
 import { firebase } from '../../config'
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { BackHandler } from 'react-native';
 import Logout from "../components/logout";
 import { withNavigation } from 'react-navigation';
+import { Divider } from "react-native-paper";
 
 
 function Home() {
@@ -51,7 +52,10 @@ function Home() {
   }, []);
 
   return (
-    <View>
+    <SafeAreaView>
+
+<Text style={styles.home}>Home</Text>
+<Divider color='red' height={2} marginVertical={10} />
 
 <Text style={styles.name}>Hello, {user.name}</Text>
       <Image source={require('../images/React-icon.png')}
@@ -91,7 +95,7 @@ function Home() {
 
       <Logout />
 
-    </View>
+    </SafeAreaView>
   )
 }
 
@@ -103,9 +107,14 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16.5,
-    marginTop: 90,
+    marginTop: 5,
     marginLeft: 15,
 
+  },
+  home: {
+    fontSize: 30,
+    marginTop: 40,
+    textAlign: 'center',
   },
 });
 
